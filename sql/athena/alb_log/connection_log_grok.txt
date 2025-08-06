@@ -1,0 +1,1 @@
+^%{DATA:time} %{DATA:client_ip} %{DATA:client_port} %{DATA:listener_port} %{DATA:tls_protocol} %{DATA:tls_cipher} %{DATA:tls_handshake_latency} "%{DATA:leaf_client_cert_subject}" %{DATA:leaf_client_cert_validity} %{DATA:leaf_client_cert_serial_number} %{DATA:tls_verify_status} %{DATA:conn_trace_id}$
