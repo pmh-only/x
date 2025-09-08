@@ -1,7 +1,6 @@
 import mysql from 'mysql'
 import {
   SecretsManagerClient,
-  GetRandomPasswordCommand,
   PutSecretValueCommand,
   GetSecretValueCommand
 } from "@aws-sdk/client-secrets-manager"
@@ -15,10 +14,10 @@ export const handler = async (event) => {
   if (Step !== "createSecret")
     return
 
-  const command = new GetRandomPasswordCommand()
-  const { RandomPassword } = await client.send(command)
+  const RandomPassword =
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15) + '!!'
 
-  
   const command4 = new GetSecretValueCommand({
     SecretId: ADMIN_SECRET_ID
   })

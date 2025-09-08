@@ -1,0 +1,8 @@
+binlog_format=ROW
+binlog_row_image=FULL
+binlog_checksum=NONE
+log_slave_updates=TRUE
+
+
+call mysql.rds_set_configuration('binlog retention hours', 24);
+grant all privileges on *.* to migr@'%' WITH GRANT OPTION;
