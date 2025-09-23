@@ -3,7 +3,7 @@ resource "aws_rds_global_cluster" "this" {
   global_cluster_identifier = "project-rds"
 
   engine              = "aurora-mysql"
-  engine_version      = "8.0.mysql_aurora.3.05.2"
+  engine_version      = "8.0.mysql_aurora.3.08.2"
   database_name       = "dev"
   storage_encrypted   = true
   deletion_protection = true

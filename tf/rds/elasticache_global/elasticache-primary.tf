@@ -13,8 +13,8 @@ module "elasticache" {
 
   apply_immediately = true
 
-  engine         = "redis"
-  engine_version = "7.1"
+  engine         = "valkey"
+  engine_version = "8.1"
   node_type      = "cache.r7g.large"
 
   vpc_id = aws_vpc.this.id
@@ -31,7 +31,7 @@ module "elasticache" {
   subnet_group_name   = local.vpc_elasticache_subnet_group_names[0]
 
   create_parameter_group  = true
-  parameter_group_family  = "redis7"
+  parameter_group_family  = "valkey8"
   num_node_groups         = 3
   replicas_per_node_group = 1
 
