@@ -4,7 +4,7 @@ module "db" {
   name           = "${var.project_name}-rds"
   database_name  = "dev"
   engine         = "aurora-postgresql"
-  engine_version = "16.4"
+  engine_version = "17.4"
   instance_class = "db.r6g.large"
   instances = {
     0 = {

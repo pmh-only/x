@@ -4,7 +4,7 @@ module "db" {
   name           = "${var.project_name}-rds"
   database_name  = "dev"
   engine         = "aurora-mysql"
-  engine_version = "8.0.mysql_aurora.3.05.2"
+  engine_version = "8.0.mysql_aurora.3.08.2"
   instance_class = "db.r6g.large"
   instances = {
     0 = {

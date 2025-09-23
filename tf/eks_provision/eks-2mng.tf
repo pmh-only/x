@@ -1,17 +1,12 @@
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
 
-  cluster_name    = "${var.project_name}-cluster"
-  cluster_version = "1.33"
+  name               = "${var.project_name}-cluster"
+  kubernetes_version = "1.33"
 
   vpc_id                   = aws_vpc.this.id
   subnet_ids               = [for item in local.eks_node_subnets : aws_subnet.this[item.key].id]
   control_plane_subnet_ids = [for item in local.eks_controlplane_subnets : aws_subnet.this[item.key].id]
-
-  cluster_compute_config = {
-    enabled    = true
-    node_pools = []
-  }
 
   fargate_profiles = {
     # fargate = {
@@ -123,7 +118,7 @@ module "eks" {
     }
   }
 
-  cluster_security_group_additional_rules = {
+  security_group_additional_rules = {
     vpc = {
       protocol    = "tcp"
       from_port   = "443"
@@ -171,7 +166,7 @@ module "eks" {
     }
   }
 
-  cluster_enabled_log_types = [
+  enabled_log_types = [
     "api",
     "audit",
     "authenticator",
@@ -179,7 +174,7 @@ module "eks" {
     "scheduler"
   ]
 
-  cluster_zonal_shift_config = {
+  zonal_shift_config = {
     enabled = true
   }
 }

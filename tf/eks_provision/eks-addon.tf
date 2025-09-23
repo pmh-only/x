@@ -39,7 +39,7 @@ module "eks_blueprints_addons" {
     }
     amazon-cloudwatch-observability = {
       most_recent              = true
-      service_account_role_arn = module.irsa_cloudwatchagent.iam_role_arn
+      service_account_role_arn = module.irsa_cloudwatchagent.arn
       configuration_values = jsonencode({
         containerLogs = { enabled = false }
       })
@@ -52,7 +52,7 @@ module "eks_blueprints_addons" {
   enable_karpenter                    = false
   enable_metrics_server               = true
   enable_cluster_autoscaler           = true
-  enable_aws_load_balancer_controller = false # <- eks auto
+  enable_aws_load_balancer_controller = true
   enable_external_secrets             = false
   enable_aws_for_fluentbit            = true
   enable_fargate_fluentbit            = false
@@ -206,7 +206,7 @@ resource "kubectl_manifest" "argocd_image_updater" {
         data.aws_caller_identity.caller.account_id
       ),
       "{irsa}",
-      module.irsa_argocd_updater.iam_role_arn
+      module.irsa_argocd_updater.arn
     ),
     "{region}",
     var.region
