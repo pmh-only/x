@@ -2,3 +2,5 @@ rds.logical_replication=1
 shared_preload_libraries=pglogical
 
 CREATE EXTENSION pglogical;
+GRANT rds_superuser TO migrate;
+GRANT ALL ON DATABASE test TO migrate;
