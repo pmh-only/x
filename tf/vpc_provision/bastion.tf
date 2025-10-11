@@ -85,7 +85,7 @@ locals {
       echo "Port ${local.ssh_port}" >> /etc/ssh/sshd_config
       systemctl restart sshd
 
-      yum install -y --allowerasing jq curl wget git mariadb105 postgresql16 docker redis6
+      yum install -y --allowerasing jq curl wget git mariadb1011 postgresql17 docker redis6
 
       python3 -m ensurepip
       python3 -m pip install parquet-tools
@@ -108,10 +108,25 @@ locals {
       usermod -aG docker ssm-user
 
       systemctl enable --now docker
-      while true; do
-        if [ -f /proc/sys/fs/binfmt_misc/qemu-aarch64 ]; then break; fi
-        docker run --privileged --rm tonistiigi/binfmt --install arm64
-      done
+      mount -t binfmt_misc binfmt_misc /proc/sys/fs/binfmt_misc
+      docker run --privileged --rm tonistiigi/binfmt --install all
+
+      sh -c '
+      cat <<EOS > /etc/systemd/system/binfmt-qemu.service
+      [Unit]
+      Description=Register binfmt for qemu
+      After=proc-sys-fs-binfmt_misc.mount
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/bin/docker run --privileged --rm tonistiigi/binfmt --install arm64
+
+      [Install]
+      WantedBy=multi-user.target
+      EOS
+      '
+
+      systemctl enable --now binfmt-qemu
     EOF
   }
 }
