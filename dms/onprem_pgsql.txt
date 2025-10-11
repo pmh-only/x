@@ -1,9 +1,9 @@
-sudo yum install -y postgresql15
-sudo yum install -y https://dl.2ndquadrant.com/default/release/browse/rpm/packages/centos/8/x86_64/15/postgresql15-pglogical-2.4.2-1.el8.x86_64.rpm
+sudo yum install -y postgresql17
+sudo yum install -y https://download.postgresql.org/pub/repos/yum/17/redhat/rhel-8-x86_64/pglogical_17-2.4.5-1PGDG.rhel8.x86_64.rpm
 
-sudo cp /usr/pgsql-15/lib/* /usr/lib64/pgsql/
-sudo cp /usr/pgsql-15/share/* /usr/share/pgsql/ -r
-sudo cp /usr/pgsql-15/bin/* /usr/bin/
+sudo cp /usr/pgsql-17/lib/* /usr/lib64/pgsql/
+sudo cp /usr/pgsql-17/share/* /usr/share/pgsql/ -r
+sudo cp /usr/pgsql-17/bin/* /usr/bin/
 
 sudo postgresql-setup --initdb
 sudo vim /var/lib/pgsql/data/postgresql.conf
@@ -24,10 +24,11 @@ sudo systemctl restart postgresql
 
 sudo -u postgres psql
 ---
-create user admin with password 'admin123!!';
-alter user admin with superuser;
+create user migrate with password 'migrateadmin!!';
+alter user migrate with superuser;
 
 create database test;
+grant all on database test to migrate;
 
 \c test
 create extension pglogical;
