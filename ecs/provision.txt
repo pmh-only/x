@@ -1,0 +1,30 @@
+//
+// al2023
+https://console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2023/recommended/image_id/description?region=a#
+https://console.aws.amazon.com/systems-manager/parameters/aws/service/ecs/optimized-ami/amazon-linux-2023/arm64/recommended/image_id/description?region=a#
+
+#!/bin/bash
+cat <<-'EOF' > /etc/ecs/ecs.config
+	ECS_CLUSTER=<CLUSTER_NAME>
+	ECS_ENABLE_CONTAINER_METADATA=true
+	ECS_ENABLE_SPOT_INSTANCE_DRAINING=true
+	ECS_AVAILABLE_LOGGING_DRIVERS=["json-file","awslogs","fluentd","none"]
+EOF
+
+//
+// bottlerocket
+https://console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-2/x86_64/latest/image_id/description?region=a#
+https://console.aws.amazon.com/systems-manager/parameters/aws/service/bottlerocket/aws-ecs-2/arm64/latest/image_id/description?region=a#
+
+[settings.ecs]
+cluster = "<CLUSTER_NAME>"
+enable-spot-instance-draining = true
+enable-container-metadata = true
+logging-drivers = ["json-file","awslogs","fluentd","none"]
+
+
+//
+//
+
+AmazonEC2ContainerServiceforEC2Role
+AmazonSSMManagedInstanceCore

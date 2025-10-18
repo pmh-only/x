@@ -14,17 +14,28 @@ yum install -y --allowerasing jq curl wget git mariadb1011 postgresql17 docker r
 python3 -m ensurepip
 python3 -m pip install parquet-tools
 
-wget https://awscli.amazonaws.com/awscli-exe-linux-${archlg}.zip -O /tmp/awscliv2.zip
-cd /tmp; unzip /tmp/awscliv2.zip; /tmp/aws/install
+mkdir ~/.tmp
 
-wget https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${archsm}/kubectl -O /tmp/kubectl
-install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl
+wget https://awscli.amazonaws.com/awscli-exe-linux-${archlg}.zip -O ~/.tmp/awscliv2.zip
+cd ~/.tmp; unzip ~/.tmp/awscliv2.zip; ~/.tmp/aws/install
 
-wget https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_linux_${archsm}.tar.gz -O /tmp/eksctl.tar.gz
-tar -xzf /tmp/eksctl.tar.gz -C /tmp
-install -o root -g root -m 0755 /tmp/eksctl /usr/local/bin/eksctl
+wget https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/${archsm}/kubectl -O ~/.tmp/kubectl
+install -o root -g root -m 0755 ~/.tmp/kubectl /usr/local/bin/kubectl
+
+wget https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_linux_${archsm}.tar.gz -O ~/.tmp/eksctl.tar.gz
+tar -xzf ~/.tmp/eksctl.tar.gz -C ~/.tmp 
+install -o root -g root -m 0755 ~/.tmp/eksctl /usr/local/bin/eksctl
 
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_${archsm}.tar.gz -O ~/.tmp/k9s.tar.gz
+tar -xzf ~/.tmp/k9s.tar.gz -C ~/.tmp 
+install -o root -g root -m 0755 ~/.tmp/k9s /usr/local/bin/k9s
+
+ISTIO_LATEST=$(curl https://api.github.com/repos/istio/istio/releases/latest | jq -r .tag_name)
+wget https://github.com/istio/istio/releases/download/$ISTIO_LATEST/istio-$ISTIO_LATEST-linux-${archsm}.tar.gz -O ~/.tmp/istio.tar.gz
+tar -xzf ~/.tmp/istio.tar.gz -C ~/.tmp 
+install -o root -g root -m 0755 ~/.tmp/istio-$ISTIO_LATEST/bin/istioctl /usr/local/bin/istioctl
 
 echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bashrc
 
