@@ -40,8 +40,8 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 wget https://raw.githubusercontent.com/pmh-only/x/refs/heads/main/k8s/addon_install/templates/argocd_image_updater.yml -O argocd_image_updater.yml
 
-sed "s/<REGION>/$REGION/g" -i argocd_image_updater.yml
-sed "s/<ACCOUNT_ID>/$ACCOUNT_ID/g" -i argocd_image_updater.yml
-sed "s/<ROLE_ARN>/$ROLE_ARN/g" -i argocd_image_updater.yml
+sed -i -e "s/<REGION>/$REGION/g" argocd_image_updater.yml
+sed -i -e "s/<ACCOUNT_ID>/$ACCOUNT_ID/g" argocd_image_updater.yml
+sed -i -e "s%<ROLE_ARN>%$ROLE_ARN%g" argocd_image_updater.yml
 
 kubectl apply -n argocd -f argocd_image_updater.yml
