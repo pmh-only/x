@@ -1,7 +1,9 @@
 regions:
   - global
+  - us-east-1
+  - us-west-1
   - ap-northeast-2
-  - us-west-2
+  - ap-northeast-1
 
 blocklist:
   - 1234567890
@@ -133,20 +135,18 @@ accounts:
         - "91a8e47e-5cbf-43e5-89e0-0d2207b25cb7"
 
 settings:
-  S3Object:
-  IAMRole:
-    IncludeServiceLinkedRoles: true
-  S3Bucket:
-    BypassGovernanceRetention: true
   EC2Image:
     IncludeDisabled: true
     IncludeDeprecated: true
     DisableDeregistrationProtection: true
   EC2Instance:
+    DisableStopProtection: true
     DisableDeletionProtection: true
   RDSInstance:
     DisableDeletionProtection: true
-  CognitoUserPool:
+  CloudFormationStack:
+    DisableDeletionProtection: true
+  DynamoDBTable:
     DisableDeletionProtection: true
 
 resource-types:
@@ -181,22 +181,6 @@ resource-types:
     - RedshiftServerlessSnapshot # Deprecated service
     - RedshiftServerlessNamespace # Deprecated service
     - RedshiftServerlessWorkgroup # Deprecated service
-    - OSPackage
-    - GameLiftMatchmakingConfiguration
-    - GameLiftQueue
-    - GameLiftFleet
-    - GameLiftMatchmakingRuleSet
-    - GameLiftBuild
-    - ElasticTranscoderPreset
     - ElasticTranscoderPipeline
-    - IoTTwinMakerWorkspace
-    - IoTTwinMakerComponentType
-    - IoTTwinMakerEntity
-    - IoTTwinMakerScene
-    - IoTTwinMakerSyncJob
-    - RekognitionProject
-    - RekognitionDataset
-    - BedrockModelCustomizationJob
-    - BedrockPrompt
-    - BedrockEvaluationJob
-    - TranscribeLanguageModel
+    - ElasticTranscoderPreset
+    - QLDBLedger
