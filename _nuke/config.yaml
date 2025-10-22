@@ -148,6 +148,26 @@ settings:
     DisableDeletionProtection: true
   DynamoDBTable:
     DisableDeletionProtection: true
+  CognitoUserPool:
+    DisableDeletionProtection: true
+  DocDBCluster:
+    DisableDeletionProtection: true
+  DSQLCluster:
+    DisableDeletionProtection: true
+  EKSCluster:
+    DisableDeletionProtection: true
+  ELBv2:
+    DisableDeletionProtection: true
+  NeptuneCluster:
+    DisableDeletionProtection: true
+  NeptuneGraph:
+    DisableDeletionProtection: true
+  NeptuneInstance:
+    DisableDeletionProtection: true
+  PinpointPhoneNumber:
+    DisableDeletionProtection: true
+  QLDBLedger:
+    DisableDeletionProtection: true
 
 resource-types:
   excludes:
