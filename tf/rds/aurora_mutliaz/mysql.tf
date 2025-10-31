@@ -41,8 +41,8 @@ module "db" {
   iam_database_authentication_enabled = true
 
   cluster_performance_insights_enabled          = true
-  cluster_performance_insights_retention_period = 7
-  cluster_monitoring_interval                   = 465
+  cluster_performance_insights_retention_period = 465
+  cluster_monitoring_interval                   = 30
 
   database_insights_mode                 = "advanced"
   backtrack_window                       = 259200

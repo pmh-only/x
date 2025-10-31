@@ -20,7 +20,7 @@ module "elasticache" {
       from_port   = 6378
       to_port     = 6378
       description = "VPC traffic"
-      cidr_ipv4   = local.vpc_cidr_block
+      cidr_ipv4   = local.vpc_cidr
     }
   }
 

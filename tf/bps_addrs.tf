@@ -14,6 +14,9 @@ resource "aws_securityhub_account" "default" {}
 
 resource "aws_devopsguru_resource_collection" "default" {
   type = "AWS_SERVICE"
+  cloudformation {
+    stack_names = ["*"]
+  }
 }
 
 resource "aws_guardduty_detector" "default" {
