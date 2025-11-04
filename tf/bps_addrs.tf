@@ -12,13 +12,6 @@ resource "aws_s3_account_public_access_block" "default" {
 
 resource "aws_securityhub_account" "default" {}
 
-resource "aws_devopsguru_resource_collection" "default" {
-  type = "AWS_SERVICE"
-  cloudformation {
-    stack_names = ["*"]
-  }
-}
-
 resource "aws_guardduty_detector" "default" {
   enable = true
 }
