@@ -1,9 +1,6 @@
 regions:
   - global
   - us-east-1
-  - us-west-1
-  - ap-northeast-2
-  - ap-northeast-1
 
 blocklist:
   - 1234567890
@@ -135,6 +132,8 @@ accounts:
         - "91a8e47e-5cbf-43e5-89e0-0d2207b25cb7"
 
 settings:
+  IAMRole:
+    IncludeServiceLinkedRoles: true
   EC2Image:
     IncludeDisabled: true
     IncludeDeprecated: true

@@ -1,11 +1,11 @@
 #################################
 
 variable "project_name" {
-  default = "project"
+  default = "wsi"
 }
 
 variable "region" {
-  default = "ap-northeast-2"
+  default = "us-east-1"
 }
 
 #################################
@@ -27,7 +27,6 @@ provider "aws" {
   default_tags {
     tags = {
       project = var.project_name
-      owner   = "pmh_only"
     }
   }
 }
