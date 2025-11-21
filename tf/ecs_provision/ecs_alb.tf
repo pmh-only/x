@@ -61,17 +61,18 @@ module "alb" {
           priority = 100
           actions = [
             {
-              type = "weighted-forward"
-              target_groups = [
-                {
-                  target_group_key = "myapp"
-                  weight           = 100
-                },
-                # {
-                #   target_group_key = "myapp-green"
-                #   weight           = 0
-                # }
-              ]
+              weighted_forward = {
+                target_groups = [
+                  {
+                    target_group_key = "myapp"
+                    weight           = 100
+                  },
+                  # {
+                  #   target_group_key = "myapp-green"
+                  #   weight           = 0
+                  # }
+                ]
+              }
             }
           ]
 
