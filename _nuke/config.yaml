@@ -1,6 +1,8 @@
 regions:
   - global
   - us-east-1
+  - ap-northeast-2
+  - us-west-2
 
 blocklist:
   - 1234567890
@@ -62,7 +64,7 @@ accounts:
       IAMUserPolicyAttachment:
         - "admin -> AdministratorAccess"
       IAMUserAccessKey:
-        - "admin -> AKIAZOFRFKUQGG4EU5OP"
+        - "admin -> AKIAZOFRFKUQEE6R3VME"
       IAMSAMLProvider:
         - "arn:aws:iam::648911607072:saml-provider/AWSSSO_93b584ed1d22a1c5_DO_NOT_DELETE"
         - "arn:aws:iam::648911607072:saml-provider/AWSSSO_pmhonly"
