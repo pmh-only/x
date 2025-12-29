@@ -98,7 +98,7 @@ spec:
               port: <PORT>
             failureThreshold: 30
             timeoutSeconds: 5
-            successThreshold: 10
+            successThreshold: 1
             periodSeconds: 1
           # env:
           # - name: DB_HOST
